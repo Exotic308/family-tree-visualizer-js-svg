@@ -7,7 +7,6 @@ class FamilyTreeDrawer {
         this.verticalSpacing = 16;
         this.horizontalSpacing = 16;
 
-        this.textSize = 16;
         this.lineThickness = 0.8;
         this.spouseDistance = 16;
         this.nameWidth = 100;
@@ -17,6 +16,9 @@ class FamilyTreeDrawer {
         
         // Clear any existing content
         this.container.innerHTML = '';
+        
+        // Add CSS styles to SVG
+        this.addSVGStyles();
         
         // Make SVG responsive to window size
         this.updateSVGSize();
@@ -32,6 +34,38 @@ class FamilyTreeDrawer {
             lastY: 0
         };
         this.setupPanZoom();
+    }
+
+    getSVGStyles() {
+        return `
+            .person-text { font-size: 16px; font-family: Arial, sans-serif; text-anchor: start; fill: black; }
+            .person-name { font-weight: bold; dominant-baseline: hanging; }
+            .person-years { font-weight: normal; dominant-baseline: hanging; }
+            .connection-line { stroke: black; stroke-width: 0.8; fill: none; }
+            .shape-outline { fill: none; stroke: black; stroke-width: 1; }
+            .person-text:hover { fill: #007bff; cursor: pointer; }
+            .connection-line:hover { stroke: #007bff; stroke-width: 1.2; }
+        `;
+    }
+
+    createStyleDefs() {
+        // Create a defs element for styles
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        
+        // Create style element
+        const style = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+        style.setAttribute('type', 'text/css');
+        
+        // Add CSS content from single source
+        style.textContent = this.getSVGStyles();
+        
+        defs.appendChild(style);
+        return defs;
+    }
+
+    addSVGStyles() {
+        const defs = this.createStyleDefs();
+        this.container.appendChild(defs);
     }
 
     updateSVGSize() {
@@ -146,6 +180,14 @@ class FamilyTreeDrawer {
             element.style.transform = '';
             element.style.transformOrigin = '';
         });
+        
+        // Ensure styles are preserved in the downloaded SVG
+        const defs = svgClone.querySelector('defs');
+        if (!defs) {
+            // If no defs, add the styles back using shared method
+            const newDefs = this.createStyleDefs();
+            svgClone.insertBefore(newDefs, svgClone.firstChild);
+        }
         
         // Set the SVG dimensions to the current viewport size
         const containerRect = this.container.parentElement.getBoundingClientRect();
@@ -290,33 +332,27 @@ class FamilyTreeDrawer {
     drawPerson(person, x, y) {
         console.log('Drawing person:', person.name, 'at', x, y);
     
-        // Single text element
+        // Single text element with CSS classes
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         text.setAttribute('x', x);
         text.setAttribute('y', y);
-        text.setAttribute('font-size', this.textSize);
-        text.setAttribute('font-family', 'Arial, sans-serif');
-        text.setAttribute('text-anchor', 'start');
-        text.setAttribute('fill', 'black');
+        text.classList.add('person-text');
 
-        // Bold name
+        // Bold name with CSS class
         const nameSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-        nameSpan.setAttribute('font-weight', 'bold');
+        nameSpan.classList.add('person-name');
         nameSpan.textContent = person.name;
-        nameSpan.setAttribute('dominant-baseline', 'hanging');
         
         text.appendChild(nameSpan);
     
         // Years (non-bold) if available
         if (person.born || person.died) {
             const yearsSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-            yearsSpan.setAttribute('font-weight', 'normal');
-            //yearsSpan.setAttribute('dx', 10); // spacing after name
+            yearsSpan.classList.add('person-years');
             let years = ' ';
             if (person.born) years += person.born;
             if (person.died) years += ' ' + person.died;
             yearsSpan.textContent = years;
-            yearsSpan.setAttribute('dominant-baseline', 'hanging');
             text.appendChild(yearsSpan);
         }
     
@@ -331,9 +367,7 @@ class FamilyTreeDrawer {
         // -3 because for some reason the circle is not centered on the y axis
         circle.setAttribute('cy', y - 3);
         circle.setAttribute('r', r);
-        circle.setAttribute('fill', 'none');
-        circle.setAttribute('stroke', 'black');
-        circle.setAttribute('stroke-width', 1);
+        circle.classList.add('shape-outline');
         this.container.appendChild(circle);
     }
 
@@ -343,9 +377,7 @@ class FamilyTreeDrawer {
         rect.setAttribute('y', y);
         rect.setAttribute('width', w);
         rect.setAttribute('height', h);
-        rect.setAttribute('fill', 'none');
-        rect.setAttribute('stroke', 'black');
-        rect.setAttribute('stroke-width', 1);
+        rect.classList.add('shape-outline');
         this.container.appendChild(rect);
     }
 
@@ -355,7 +387,7 @@ class FamilyTreeDrawer {
         line.setAttribute('y1', y1);
         line.setAttribute('x2', x2);
         line.setAttribute('y2', y2);
-        line.setAttribute("style", "stroke: black; stroke-width: 0.8; fill: none;");
+        line.classList.add('connection-line');
         this.container.appendChild(line);
     }
 
@@ -366,7 +398,7 @@ class FamilyTreeDrawer {
         vLine.setAttribute('y1', y1);
         vLine.setAttribute('x2', x1);
         vLine.setAttribute('y2', y2);
-        vLine.setAttribute("style", "stroke: black; stroke-width: 0.8; fill: none;");
+        vLine.classList.add('connection-line');
         this.container.appendChild(vLine);
 
         // Then horizontal line (y stays, x moves)
@@ -375,7 +407,7 @@ class FamilyTreeDrawer {
         hLine.setAttribute('y1', y2);
         hLine.setAttribute('x2', x2);
         hLine.setAttribute('y2', y2);
-        hLine.setAttribute("style", "stroke: black; stroke-width: 0.8; fill: none;");
+        hLine.classList.add('connection-line');
         this.container.appendChild(hLine);
     }
     //#endregion
