@@ -30,8 +30,12 @@ class FamilyTreeDrawer {
             translateX: 0,
             translateY: 0,
             isDragging: false,
+            isPinching: false,
             lastX: 0,
-            lastY: 0
+            lastY: 0,
+            initialDistance: 0,
+            initialScale: 1,
+            initialCenter: { x: 0, y: 0 }
         };
         this.setupPanZoom();
     }
@@ -130,8 +134,78 @@ class FamilyTreeDrawer {
             this.container.style.cursor = 'grab';
         });
 
+        // Touch events for mobile devices
+        this.container.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            if (e.touches.length === 1) {
+                // Single touch - start panning
+                this.panZoom.isDragging = true;
+                this.panZoom.lastX = e.touches[0].clientX;
+                this.panZoom.lastY = e.touches[0].clientY;
+            } else if (e.touches.length === 2) {
+                // Two touches - start pinch zoom
+                this.panZoom.isPinching = true;
+                this.panZoom.initialDistance = this.getTouchDistance(e.touches[0], e.touches[1]);
+                this.panZoom.initialScale = this.panZoom.scale;
+                this.panZoom.initialCenter = this.getTouchCenter(e.touches[0], e.touches[1]);
+            }
+        });
+
+        this.container.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if (e.touches.length === 1 && this.panZoom.isDragging) {
+                // Single touch - panning
+                const deltaX = e.touches[0].clientX - this.panZoom.lastX;
+                const deltaY = e.touches[0].clientY - this.panZoom.lastY;
+                
+                this.panZoom.translateX += deltaX;
+                this.panZoom.translateY += deltaY;
+                
+                this.panZoom.lastX = e.touches[0].clientX;
+                this.panZoom.lastY = e.touches[0].clientY;
+                
+                this.applyTransform();
+            } else if (e.touches.length === 2 && this.panZoom.isPinching) {
+                // Two touches - pinch zoom
+                const currentDistance = this.getTouchDistance(e.touches[0], e.touches[1]);
+                const currentCenter = this.getTouchCenter(e.touches[0], e.touches[1]);
+                
+                const scaleFactor = currentDistance / this.panZoom.initialDistance;
+                const newScale = Math.max(0.1, Math.min(5, this.panZoom.initialScale * scaleFactor));
+                
+                this.zoomAtPoint(newScale / this.panZoom.scale, currentCenter.x, currentCenter.y);
+            }
+        });
+
+        this.container.addEventListener('touchend', (e) => {
+            if (e.touches.length === 0) {
+                // All touches ended
+                this.panZoom.isDragging = false;
+                this.panZoom.isPinching = false;
+            } else if (e.touches.length === 1) {
+                // One touch ended, switch to panning mode
+                this.panZoom.isPinching = false;
+                this.panZoom.isDragging = true;
+                this.panZoom.lastX = e.touches[0].clientX;
+                this.panZoom.lastY = e.touches[0].clientY;
+            }
+        });
+
         // Set initial cursor
         this.container.style.cursor = 'grab';
+    }
+
+    getTouchDistance(touch1, touch2) {
+        const dx = touch1.clientX - touch2.clientX;
+        const dy = touch1.clientY - touch2.clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    getTouchCenter(touch1, touch2) {
+        return {
+            x: (touch1.clientX + touch2.clientX) / 2,
+            y: (touch1.clientY + touch2.clientY) / 2
+        };
     }
 
     zoomAtPoint(scaleFactor, x, y) {

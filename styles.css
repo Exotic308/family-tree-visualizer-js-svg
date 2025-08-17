@@ -32,4 +32,11 @@ h1 {
     height: 100%;
     display: block;
     background-color: white;
+    /* Prevent text selection on touch devices */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* Improve touch responsiveness */
+    touch-action: none;
 }
