@@ -1,6 +1,6 @@
-# Family Tree Ignjic - SVG Family Tree Drawer
+# Family Tree Visualizer JS SVG
 
-## Overview
+### Overview
 A custom SVG-based family tree visualization tool. This tool creates a horizontal, multi-generational family tree layout with clean lines and minimalist design.
 
 ### Family Tree Data Format
@@ -25,16 +25,21 @@ var data = {
 };
 ```
 
-## Technical Implementation
-
 ### SVG Approach Benefits
 - **Scalable**: Maintains quality at any zoom level
 - **Interactive**: Easy to add click events, tooltips, and navigation
-- **Accessible**: Text can be read by screen readers
 - **Performance**: Efficient rendering for large family trees
 - **Printability**: Easy to export and print
 
-## Usage
+### Running the Project
+Since this project uses `fetch()` to load data, you need a local web server:
+
+```bash
+# From your project directory
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000` in your browser.
 
 ### Basic Setup
 1. Include the family tree data file
@@ -42,7 +47,6 @@ var data = {
 3. Initialize the FamilyTreeDrawer with your data
 4. Call the render method
 
-### Example
 ```html
 <div id="family-tree-container">
     <svg id="family-tree-svg" width="100%" height="100%"></svg>
@@ -54,7 +58,7 @@ var data = {
 </script>
 ```
 
-## Dependencies
+### Dependencies
 - No external libraries required
 - Pure JavaScript and SVG
 - CSS for styling (optional)
