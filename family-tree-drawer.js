@@ -1,0 +1,382 @@
+class FamilyTreeDrawer {
+    constructor(selector, data) {
+        this.container = document.querySelector(selector);
+        this.data = data;
+
+        this.header = 78;
+        this.verticalSpacing = 16;
+        this.horizontalSpacing = 16;
+
+        this.textSize = 16;
+        this.lineThickness = 0.8;
+        this.spouseDistance = 16;
+        this.nameWidth = 100;
+        this.afterAscendantSpacing = 20;
+        this.beforeDescendantSpacing = 20;
+        this.siblingDistance = 0;
+        
+        // Clear any existing content
+        this.container.innerHTML = '';
+        
+        // Make SVG responsive to window size
+        this.updateSVGSize();
+        window.addEventListener('resize', () => this.updateSVGSize());
+        
+        // Add pan and zoom event listeners
+        this.panZoom = {
+            scale: 1,
+            translateX: 0,
+            translateY: 0,
+            isDragging: false,
+            lastX: 0,
+            lastY: 0
+        };
+        this.setupPanZoom();
+    }
+
+    updateSVGSize() {
+        const container = this.container.parentElement;
+        const containerRect = container.getBoundingClientRect();
+        
+        // Set SVG dimensions to fill available space
+        this.container.setAttribute('width', containerRect.width);
+        this.container.setAttribute('height', containerRect.height); // Ensure minimum height for all content
+        
+        // Set viewBox to match dimensions
+        this.container.setAttribute('viewBox', `0 0 ${containerRect.width} ${containerRect.height}`);
+    }
+
+    setupPanZoom() {
+        // Mouse wheel zoom
+        this.container.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? 0.9 : 1.1;
+            const rect = this.container.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+            
+            this.zoomAtPoint(delta, mouseX, mouseY);
+        });
+
+        // Mouse down - start panning
+        this.container.addEventListener('mousedown', (e) => {
+            if (e.button === 0) { // Left mouse button only
+                this.panZoom.isDragging = true;
+                this.panZoom.lastX = e.clientX;
+                this.panZoom.lastY = e.clientY;
+                this.container.style.cursor = 'grabbing';
+            }
+        });
+
+        // Mouse move - panning
+        this.container.addEventListener('mousemove', (e) => {
+            if (this.panZoom.isDragging) {
+                const deltaX = e.clientX - this.panZoom.lastX;
+                const deltaY = e.clientY - this.panZoom.lastY;
+                
+                this.panZoom.translateX += deltaX;
+                this.panZoom.translateY += deltaY;
+                
+                this.panZoom.lastX = e.clientX;
+                this.panZoom.lastY = e.clientY;
+                
+                this.applyTransform();
+            }
+        });
+
+        // Mouse up - stop panning
+        this.container.addEventListener('mouseup', () => {
+            this.panZoom.isDragging = false;
+            this.container.style.cursor = 'grab';
+        });
+
+        // Mouse leave - stop panning
+        this.container.addEventListener('mouseleave', () => {
+            this.panZoom.isDragging = false;
+            this.container.style.cursor = 'grab';
+        });
+
+        // Set initial cursor
+        this.container.style.cursor = 'grab';
+    }
+
+    zoomAtPoint(scaleFactor, x, y) {
+        const oldScale = this.panZoom.scale;
+        const newScale = Math.max(0.1, Math.min(5, this.panZoom.scale * scaleFactor));
+        
+        // Calculate zoom center point
+        const zoomCenterX = (x - this.panZoom.translateX) / oldScale;
+        const zoomCenterY = (y - this.panZoom.translateY) / oldScale;
+        
+        // Update scale
+        this.panZoom.scale = newScale;
+        
+        // Adjust translation to zoom at the mouse point
+        this.panZoom.translateX = x - zoomCenterX * newScale;
+        this.panZoom.translateY = y - zoomCenterY * newScale;
+        
+        this.applyTransform();
+    }
+
+    applyTransform() {
+        const transform = `translate(${this.panZoom.translateX}px, ${this.panZoom.translateY}px) scale(${this.panZoom.scale})`;
+        
+        // Apply transform to all SVG elements
+        const allElements = this.container.querySelectorAll('*');
+        allElements.forEach(element => {
+            element.style.transform = transform;
+            element.style.transformOrigin = '0 0';
+        });
+    }
+
+    resetView() {
+        this.panZoom.scale = 1;
+        this.panZoom.translateX = 0;
+        this.panZoom.translateY = 0;
+        this.applyTransform();
+    }
+
+    downloadSVG() {
+        // Create a clone of the SVG for export
+        const svgClone = this.container.cloneNode(true);
+        
+        // Remove any existing transforms from the clone
+        const allElements = svgClone.querySelectorAll('*');
+        allElements.forEach(element => {
+            element.style.transform = '';
+            element.style.transformOrigin = '';
+        });
+        
+        // Set the SVG dimensions to the current viewport size
+        const containerRect = this.container.parentElement.getBoundingClientRect();
+        
+        // Set SVG dimensions to fill available space
+        svgClone.setAttribute('width', containerRect.width);
+        svgClone.setAttribute('height', containerRect.height);
+
+        // Set viewBox to match dimensions
+        svgClone.setAttribute('viewBox', `0 0 ${containerRect.width} ${containerRect.height}`);
+        
+        // Convert SVG to string
+        const svgData = new XMLSerializer().serializeToString(svgClone);
+        
+        // Create blob and download link
+        const blob = new Blob([svgData], { type: 'image/svg+xml' });
+        const url = URL.createObjectURL(blob);
+        
+        // Create download link
+        const downloadLink = document.createElement('a');
+        downloadLink.href = url;
+        downloadLink.download = 'family_tree_ignjic.svg';
+        
+        // Trigger download
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        
+        // Clean up
+        URL.revokeObjectURL(url);
+    }
+
+    render() {
+        // Find the root person
+        const rootPerson = this.data.nodes.find(node => node.id === this.data.root);
+        if (!rootPerson) {
+            console.error('Root person not found');
+            return;
+        }
+        
+        // 78 is header
+        this.renderPerson(rootPerson, this.horizontalSpacing, this.header + this.verticalSpacing);
+    }
+
+    renderPerson(person, startX, startY, totalHeight) {
+
+        // Find the root person's partner and children
+        const partner = this.findPartner(person);
+        const children = this.findChildren(person, partner);
+
+        // Draw person
+        var personSvg = this.drawPerson(person, startX, startY);
+        var personBox = personSvg.getBBox();
+        
+        var height = personBox.height;
+        var width = personBox.width;
+
+        if (partner) {
+            // Draw partner
+            var partnerSvg = this.drawPerson(partner, startX, startY + personBox.height + this.spouseDistance);
+            var partnerBox = partnerSvg.getBBox();
+            
+            height += this.spouseDistance + partnerBox.height;
+            width = width > partnerBox.width ? width : partnerBox.width;
+
+            this.drawLine(startX + width/2, startY + height/2 - 3, startX + width + this.afterAscendantSpacing, startY + height/2 - 3);
+        }else{
+            personSvg.setAttribute('y', startY + personBox.height);
+            personBox = personSvg.getBBox();
+            startY -= personBox.height - this.spouseDistance;
+            height += this.spouseDistance + personBox.height;
+            
+        }
+
+        if(children.length > 0)
+            this.drawCircle(startX + width + this.afterAscendantSpacing, startY + height / 2, 3);
+
+        // Debugging
+        //this.drawRect(personBox.x, personBox.y, personBox.width, personBox.height);
+
+        // Draw children below if they exist
+        if(children.length == 0){
+            return height;
+        }
+
+        var childrenHeight = 0;
+        var isFirstChild = true;
+        for(var child of children){
+            if(!isFirstChild){
+                childrenHeight += this.siblingDistance;
+            }
+            isFirstChild = false;
+
+            var currentChildHeight = this.renderPerson(child, startX + width + this.beforeDescendantSpacing + this.afterAscendantSpacing, startY + childrenHeight, totalHeight);
+            this.drawCornerLine(startX + width + this.afterAscendantSpacing, startY + height / 2 - 3, startX + width + this.afterAscendantSpacing+ this.beforeDescendantSpacing, startY + height / 2 - 3 + childrenHeight);
+            childrenHeight += currentChildHeight;
+        }
+
+        return height > childrenHeight ? height : childrenHeight;
+    }
+
+    //#region Family Tree Utility
+    findPartner(person) {
+        if (!person.pids || person.pids.length === 0) {
+            return null;
+        }
+        
+        // Get the first partner (assuming monogamous relationships for now)
+        const partnerId = person.pids[0];
+        return this.data.nodes.find(node => node.id === partnerId);
+    }
+
+    findChildren(person1, person2) {
+        const children = [];
+        
+        // Find all nodes that have person1 or person2 as parents
+        this.data.nodes.forEach(node => {
+            if (person2) {
+                // Both parents exist
+                if ((node.fid === person1.id && node.mid === person2.id) || 
+                    (node.fid === person2.id && node.mid === person1.id)) {
+                    children.push(node);
+                }
+            } else {
+                // Only one parent exists (single parent)
+                if (node.fid === person1.id || node.mid === person1.id) {
+                    children.push(node);
+                }
+            }
+        });
+        
+        // Sort children by ID for consistent ordering
+        children.sort((a, b) => a.id - b.id);
+        
+        console.log('Found children:', children);
+        return children;
+    }
+
+    //#endregion
+
+    //#region Draw Functions
+    drawPerson(person, x, y) {
+        console.log('Drawing person:', person.name, 'at', x, y);
+    
+        // Single text element
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', x);
+        text.setAttribute('y', y);
+        text.setAttribute('font-size', this.textSize);
+        text.setAttribute('font-family', 'Arial, sans-serif');
+        text.setAttribute('text-anchor', 'start');
+        text.setAttribute('fill', 'black');
+
+        // Bold name
+        const nameSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+        nameSpan.setAttribute('font-weight', 'bold');
+        nameSpan.textContent = person.name;
+        nameSpan.setAttribute('dominant-baseline', 'hanging');
+        
+        text.appendChild(nameSpan);
+    
+        // Years (non-bold) if available
+        if (person.born || person.died) {
+            const yearsSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+            yearsSpan.setAttribute('font-weight', 'normal');
+            //yearsSpan.setAttribute('dx', 10); // spacing after name
+            let years = ' ';
+            if (person.born) years += person.born;
+            if (person.died) years += ' ' + person.died;
+            yearsSpan.textContent = years;
+            yearsSpan.setAttribute('dominant-baseline', 'hanging');
+            text.appendChild(yearsSpan);
+        }
+    
+        this.container.appendChild(text);
+    
+        return text;
+    }
+
+    drawCircle(x, y, r) {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        // -3 because for some reason the circle is not centered on the y axis
+        circle.setAttribute('cy', y - 3);
+        circle.setAttribute('r', r);
+        circle.setAttribute('fill', 'none');
+        circle.setAttribute('stroke', 'black');
+        circle.setAttribute('stroke-width', 1);
+        this.container.appendChild(circle);
+    }
+
+    drawRect(x, y, w, h) {
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', x);
+        rect.setAttribute('y', y);
+        rect.setAttribute('width', w);
+        rect.setAttribute('height', h);
+        rect.setAttribute('fill', 'none');
+        rect.setAttribute('stroke', 'black');
+        rect.setAttribute('stroke-width', 1);
+        this.container.appendChild(rect);
+    }
+
+    drawLine(x1, y1, x2, y2) {
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x1);
+        line.setAttribute('y1', y1);
+        line.setAttribute('x2', x2);
+        line.setAttribute('y2', y2);
+        line.setAttribute("style", "stroke: black; stroke-width: 0.8; fill: none;");
+        this.container.appendChild(line);
+    }
+
+    drawCornerLine(x1, y1, x2, y2) {
+        // First vertical line (x stays, y moves)
+        const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        vLine.setAttribute('x1', x1);
+        vLine.setAttribute('y1', y1);
+        vLine.setAttribute('x2', x1);
+        vLine.setAttribute('y2', y2);
+        vLine.setAttribute("style", "stroke: black; stroke-width: 0.8; fill: none;");
+        this.container.appendChild(vLine);
+
+        // Then horizontal line (y stays, x moves)
+        const hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        hLine.setAttribute('x1', x1);
+        hLine.setAttribute('y1', y2);
+        hLine.setAttribute('x2', x2);
+        hLine.setAttribute('y2', y2);
+        hLine.setAttribute("style", "stroke: black; stroke-width: 0.8; fill: none;");
+        this.container.appendChild(hLine);
+    }
+    //#endregion
+}
