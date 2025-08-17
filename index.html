@@ -47,11 +47,6 @@
                 document.getElementById('download-svg-btn').addEventListener('click', () => {
                     drawer.downloadSVG();
                 });
-
-                // Show mobile instructions on touch devices
-                if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-                    document.getElementById('mobile-instructions').style.display = 'block';
-                }
             })
             .catch(error => {
                 console.error('Error loading data:', error);

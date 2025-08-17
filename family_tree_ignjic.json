@@ -5,48 +5,60 @@
             "id": 1,
             "mid": 8,
             "fid": 9,
-            "pids": [2],
+            "pids": [
+                2
+            ],
             "gender": "male",
-            "name": "Pero",
+            "name": "Перо",
             "born": "1968"
         },
         {
             "id": 2,
-            "pids": [1],
+            "pids": [
+                1
+            ],
             "gender": "female",
-            "name": "Slavica",
+            "name": "Славица",
             "born": "1972"
         },
         {
             "id": 3,
-            "pids": [5],
+            "pids": [
+                5
+            ],
             "mid": 1,
             "fid": 2,
             "gender": "male",
-            "name": "Boris",
+            "name": "Борис",
             "born": "1990"
         },
         {
             "id": 4,
             "mid": 1,
             "fid": 2,
-            "pids": [7],
+            "pids": [
+                7
+            ],
             "gender": "male",
-            "name": "Neven",
+            "name": "Невен",
             "born": "1997"
         },
         {
             "id": 7,
-            "pids": [4],
+            "pids": [
+                4
+            ],
             "gender": "female",
-            "name": "Milica",
+            "name": "Милица",
             "born": "1995"
         },
         {
             "id": 5,
-            "pids": [3],
+            "pids": [
+                3
+            ],
             "gender": "female",
-            "name": "Aleksandra",
+            "name": "Александра",
             "born": "1990"
         },
         {
@@ -54,23 +66,27 @@
             "mid": 5,
             "fid": 3,
             "gender": "male",
-            "name": "David",
+            "name": "Давид",
             "born": "2021"
         },
         {
             "id": 8,
             "fid": 11,
-            "pids": [9],
+            "pids": [
+                9
+            ],
             "gender": "male",
-            "name": "Boro",
+            "name": "Боро",
             "born": "1941",
             "died": "2001"
         },
         {
             "id": 9,
-            "pids": [8],
+            "pids": [
+                8
+            ],
             "gender": "female",
-            "name": "Petra",
+            "name": "Петра",
             "born": ""
         },
         {
@@ -78,7 +94,7 @@
             "mid": 8,
             "fid": 9,
             "gender": "female",
-            "name": "Dusanka",
+            "name": "Дусанка",
             "born": ""
         },
         {
@@ -86,25 +102,29 @@
             "fid": 12,
             "mid": 13,
             "gender": "male",
-            "name": "Pero",
+            "name": "Перо",
             "born": "1915",
             "died": "1990"
         },
         {
             "id": 12,
-            "pids": [13],
+            "pids": [
+                13
+            ],
             "fid": 33,
             "mid": 34,
             "gender": "male",
-            "name": "Djordje",
+            "name": "Ђорђе",
             "born": "1886",
             "died": "1947"
         },
         {
             "id": 13,
-            "pids": [12],
+            "pids": [
+                12
+            ],
             "gender": "female",
-            "name": "Andja",
+            "name": "Анђа",
             "born": "1890",
             "died": "1958"
         },
@@ -113,7 +133,7 @@
             "fid": 12,
             "mid": 13,
             "gender": "male",
-            "name": "Vojko",
+            "name": "Војко",
             "born": "1911",
             "died": "1940"
         },
@@ -122,7 +142,7 @@
             "fid": 12,
             "mid": 13,
             "gender": "female",
-            "name": "Gospava",
+            "name": "Госпава",
             "born": "1908",
             "died": "1917"
         },
@@ -131,7 +151,7 @@
             "fid": 12,
             "mid": 13,
             "gender": "male",
-            "name": "Cvjetko",
+            "name": "Цвјетко",
             "born": "1919",
             "died": "1945"
         },
@@ -140,7 +160,7 @@
             "fid": 12,
             "mid": 13,
             "gender": "male",
-            "name": "Svetozar",
+            "name": "Светозар",
             "born": "1923",
             "died": ""
         },
@@ -149,7 +169,7 @@
             "fid": 12,
             "mid": 13,
             "gender": "male",
-            "name": "Ignjo",
+            "name": "Игњо",
             "born": "1921",
             "died": "1945"
         },
@@ -158,7 +178,7 @@
             "fid": 12,
             "mid": 13,
             "gender": "female",
-            "name": "Soka",
+            "name": "Сока",
             "born": "",
             "died": ""
         },
@@ -166,7 +186,7 @@
             "id": 20,
             "fid": 11,
             "gender": "male",
-            "name": "Simo",
+            "name": "Симо",
             "born": "1935",
             "died": "1935"
         },
@@ -174,7 +194,7 @@
             "id": 21,
             "fid": 11,
             "gender": "female",
-            "name": "Andja",
+            "name": "Анђа",
             "born": "",
             "died": ""
         },
@@ -182,7 +202,7 @@
             "id": 22,
             "fid": 14,
             "gender": "female",
-            "name": "Ljeposava",
+            "name": "Љепосава",
             "born": "",
             "died": ""
         },
@@ -190,7 +210,7 @@
             "id": 23,
             "fid": 14,
             "gender": "male",
-            "name": "Marko",
+            "name": "Марко",
             "born": "1934",
             "died": "1934"
         },
@@ -198,7 +218,7 @@
             "id": 24,
             "fid": 14,
             "gender": "male",
-            "name": "Mirko",
+            "name": "Мирко",
             "born": "1936",
             "died": ""
         },
@@ -206,7 +226,7 @@
             "id": 25,
             "fid": 14,
             "gender": "female",
-            "name": "Anka",
+            "name": "Анка",
             "born": "",
             "died": ""
         },
@@ -214,7 +234,7 @@
             "id": 26,
             "fid": 24,
             "gender": "male",
-            "name": "Marko",
+            "name": "Марко",
             "born": "1964",
             "died": ""
         },
@@ -222,7 +242,7 @@
             "id": 27,
             "fid": 24,
             "gender": "male",
-            "name": "Vojko",
+            "name": "Војко",
             "born": "1963",
             "died": ""
         },
@@ -230,7 +250,7 @@
             "id": 28,
             "fid": 16,
             "gender": "female",
-            "name": "Vukosava",
+            "name": "Вукосава",
             "born": "",
             "died": ""
         },
@@ -238,7 +258,7 @@
             "id": 29,
             "fid": 17,
             "gender": "female",
-            "name": "Anka",
+            "name": "Анка",
             "born": "",
             "died": ""
         },
@@ -246,7 +266,7 @@
             "id": 30,
             "fid": 17,
             "gender": "female",
-            "name": "Soka",
+            "name": "Сока",
             "born": "",
             "died": ""
         },
@@ -254,7 +274,7 @@
             "id": 31,
             "fid": 17,
             "gender": "female",
-            "name": "Radmila",
+            "name": "Радмила",
             "born": "",
             "died": ""
         },
@@ -262,7 +282,7 @@
             "id": 32,
             "fid": 17,
             "gender": "male",
-            "name": "Djordje",
+            "name": "Ђорђе",
             "born": "",
             "died": ""
         },
@@ -270,35 +290,43 @@
             "id": 33,
             "fid": 62,
             "mid": 63,
-            "pids": [34],
+            "pids": [
+                34
+            ],
             "gender": "male",
-            "name": "Pero",
+            "name": "Перо",
             "born": "1845",
             "died": "1926"
         },
         {
             "id": 34,
-            "pids": [33],
+            "pids": [
+                33
+            ],
             "gender": "female",
-            "name": "Anka",
+            "name": "Анка",
             "born": "1849",
             "died": ""
         },
         {
             "id": 35,
-            "pids": [36],
+            "pids": [
+                36
+            ],
             "fid": 33,
             "mid": 34,
             "gender": "male",
-            "name": "Petar",
+            "name": "Петар",
             "born": "1883",
             "died": "1962"
         },
         {
             "id": 36,
-            "pids": [35],
+            "pids": [
+                35
+            ],
             "gender": "female",
-            "name": "Draginja",
+            "name": "Драгиња",
             "born": "1884",
             "died": ""
         },
@@ -306,17 +334,21 @@
             "id": 37,
             "fid": 35,
             "mid": 36,
-            "pids": [38],
+            "pids": [
+                38
+            ],
             "gender": "male",
-            "name": "Milan",
+            "name": "Милан",
             "born": "1905",
             "died": "1951"
         },
         {
             "id": 38,
-            "pids": [37],
+            "pids": [
+                37
+            ],
             "gender": "female",
-            "name": "Ljeposava",
+            "name": "Љепосава",
             "born": "1904",
             "died": ""
         },
@@ -325,7 +357,7 @@
             "fid": 35,
             "mid": 36,
             "gender": "female",
-            "name": "Pelka",
+            "name": "Пелка",
             "born": "1908",
             "died": ""
         },
@@ -334,7 +366,7 @@
             "fid": 35,
             "mid": 36,
             "gender": "female",
-            "name": "Jelisavka",
+            "name": "Јелисавка",
             "born": "1910",
             "died": ""
         },
@@ -343,7 +375,7 @@
             "fid": 35,
             "mid": 36,
             "gender": "female",
-            "name": "Bosiljka",
+            "name": "Босиљка",
             "born": "1920",
             "died": ""
         },
@@ -352,7 +384,7 @@
             "fid": 35,
             "mid": 36,
             "gender": "female",
-            "name": "Milka",
+            "name": "Милка",
             "born": "1922",
             "died": ""
         },
@@ -361,7 +393,7 @@
             "fid": 35,
             "mid": 36,
             "gender": "female",
-            "name": "Zorka",
+            "name": "Зорка",
             "born": "1925",
             "died": ""
         },
@@ -370,7 +402,7 @@
             "fid": 35,
             "mid": 36,
             "gender": "female",
-            "name": "Zagorka",
+            "name": "Загорка",
             "born": "1917",
             "died": ""
         },
@@ -379,7 +411,7 @@
             "fid": 35,
             "mid": 36,
             "gender": "male",
-            "name": "Savo",
+            "name": "Саво",
             "born": "1910",
             "died": "1946"
         },
@@ -388,7 +420,7 @@
             "fid": 35,
             "mid": 36,
             "gender": "male",
-            "name": "Konstantin",
+            "name": "Константин",
             "born": "1923",
             "died": "1945"
         },
@@ -397,7 +429,7 @@
             "fid": 35,
             "mid": 36,
             "gender": "male",
-            "name": "Jovan",
+            "name": "Јован",
             "born": "1907",
             "died": "1908"
         },
@@ -406,7 +438,7 @@
             "fid": 37,
             "mid": 38,
             "gender": "female",
-            "name": "Anka",
+            "name": "Анка",
             "born": "1926",
             "died": ""
         },
@@ -415,7 +447,7 @@
             "fid": 37,
             "mid": 38,
             "gender": "female",
-            "name": "Goja",
+            "name": "Гоја",
             "born": "1929",
             "died": ""
         },
@@ -424,7 +456,7 @@
             "fid": 37,
             "mid": 38,
             "gender": "female",
-            "name": "Draginja",
+            "name": "Драгиња",
             "born": "",
             "died": ""
         },
@@ -433,7 +465,7 @@
             "fid": 37,
             "mid": 38,
             "gender": "male",
-            "name": "Mitar",
+            "name": "Митар",
             "born": "1937",
             "died": "1940"
         },
@@ -442,7 +474,7 @@
             "fid": 37,
             "mid": 38,
             "gender": "female",
-            "name": "Jelena",
+            "name": "Јелена",
             "born": "",
             "died": ""
         },
@@ -451,7 +483,7 @@
             "fid": 37,
             "mid": 38,
             "gender": "male",
-            "name": "Kosta",
+            "name": "Коста",
             "born": "1948",
             "died": ""
         },
@@ -459,7 +491,7 @@
             "id": 54,
             "fid": 53,
             "gender": "female",
-            "name": "Aleksandra",
+            "name": "Александра",
             "born": "1971",
             "died": ""
         },
@@ -467,7 +499,7 @@
             "id": 55,
             "fid": 53,
             "gender": "female",
-            "name": "Ljilja",
+            "name": "Љиља",
             "born": "1976",
             "died": ""
         },
@@ -475,7 +507,7 @@
             "id": 56,
             "fid": 45,
             "gender": "male",
-            "name": "Petar",
+            "name": "Петар",
             "born": "1940",
             "died": ""
         },
@@ -483,7 +515,7 @@
             "id": 57,
             "fid": 45,
             "gender": "female",
-            "name": "Karanfiljka",
+            "name": "Каранфиљка",
             "born": "",
             "died": ""
         },
@@ -491,7 +523,7 @@
             "id": 58,
             "fid": 56,
             "gender": "male",
-            "name": "Savo",
+            "name": "Саво",
             "born": "1966",
             "died": ""
         },
@@ -499,7 +531,7 @@
             "id": 59,
             "fid": 56,
             "gender": "female",
-            "name": "Karanfiljka",
+            "name": "Каранфиљка",
             "born": "1964",
             "died": ""
         },
@@ -507,7 +539,7 @@
             "id": 60,
             "fid": 58,
             "gender": "male",
-            "name": "Nino",
+            "name": "Нино",
             "born": "1991",
             "died": ""
         },
@@ -515,23 +547,27 @@
             "id": 61,
             "fid": 58,
             "gender": "female",
-            "name": "Andjela",
+            "name": "Анђела",
             "born": "1995",
             "died": ""
         },
         {
             "id": 62,
-            "pids": [63],
+            "pids": [
+                63
+            ],
             "gender": "male",
-            "name": "Ignjo",
+            "name": "Игњо",
             "born": "1823",
             "died": ""
         },
         {
             "id": 63,
-            "pids": [62],
+            "pids": [
+                62
+            ],
             "gender": "female",
-            "name": "Petra",
+            "name": "Петра",
             "born": "1820",
             "died": ""
         },
@@ -540,7 +576,7 @@
             "fid": 62,
             "mid": 63,
             "gender": "female",
-            "name": "Mara",
+            "name": "Мара",
             "born": "",
             "died": ""
         },
@@ -548,17 +584,21 @@
             "id": 65,
             "fid": 62,
             "mid": 63,
-            "pids": [66],
+            "pids": [
+                66
+            ],
             "gender": "male",
-            "name": "Cedomir",
+            "name": "Цедомир",
             "born": "1869",
             "died": "1939"
         },
         {
             "id": 66,
-            "pids": [65],
+            "pids": [
+                65
+            ],
             "gender": "female",
-            "name": "Joka",
+            "name": "Јока",
             "born": "1869",
             "died": "1939"
         },
@@ -567,7 +607,7 @@
             "fid": 65,
             "mid": 66,
             "gender": "male",
-            "name": "Milos",
+            "name": "Милос",
             "born": "1904",
             "died": "1971"
         },
@@ -576,7 +616,7 @@
             "fid": 65,
             "mid": 66,
             "gender": "female",
-            "name": "Milka",
+            "name": "Милка",
             "born": "1894",
             "died": "1918"
         },
@@ -585,7 +625,7 @@
             "fid": 65,
             "mid": 66,
             "gender": "female",
-            "name": "Ljeposava",
+            "name": "Љепосава",
             "born": "1896",
             "died": "1976"
         },
@@ -594,7 +634,7 @@
             "fid": 65,
             "mid": 66,
             "gender": "female",
-            "name": "Nada",
+            "name": "Нада",
             "born": "1899",
             "died": "1971"
         },
@@ -603,7 +643,7 @@
             "fid": 65,
             "mid": 66,
             "gender": "male",
-            "name": "Ignjatije",
+            "name": "Игњатије",
             "born": "1908",
             "died": "1984"
         },
@@ -612,7 +652,7 @@
             "fid": 65,
             "mid": 66,
             "gender": "female",
-            "name": "Kristina",
+            "name": "Кристина",
             "born": "1906",
             "died": "1906"
         },
@@ -621,7 +661,7 @@
             "fid": 65,
             "mid": 66,
             "gender": "male",
-            "name": "Niko",
+            "name": "Нико",
             "born": "1911",
             "died": "1979"
         },
@@ -629,9 +669,11 @@
             "id": 74,
             "fid": 62,
             "mid": 63,
-            "pids": [122],
+            "pids": [
+                122
+            ],
             "gender": "male",
-            "name": "Djoko",
+            "name": "Ђоко",
             "born": "1840",
             "died": ""
         },
@@ -640,7 +682,7 @@
             "fid": 62,
             "mid": 63,
             "gender": "male",
-            "name": "Simo Petrovic",
+            "name": "Симо Петровић",
             "born": "1842",
             "died": ""
         },
@@ -648,7 +690,7 @@
             "id": 76,
             "fid": 67,
             "gender": "male",
-            "name": "Marko",
+            "name": "Марко",
             "born": "1929",
             "died": "19.."
         },
@@ -656,7 +698,7 @@
             "id": 77,
             "fid": 67,
             "gender": "male",
-            "name": "Aleksandar",
+            "name": "Александар",
             "born": "1934",
             "died": ""
         },
@@ -664,7 +706,7 @@
             "id": 78,
             "fid": 67,
             "gender": "female",
-            "name": "Petra",
+            "name": "Петра",
             "born": "",
             "died": ""
         },
@@ -672,7 +714,7 @@
             "id": 79,
             "fid": 67,
             "gender": "female",
-            "name": "Joka",
+            "name": "Јока",
             "born": "",
             "died": ""
         },
@@ -680,7 +722,7 @@
             "id": 80,
             "fid": 67,
             "gender": "male",
-            "name": "Savo",
+            "name": "Саво",
             "born": "1937",
             "died": ""
         },
@@ -688,7 +730,7 @@
             "id": 81,
             "fid": 67,
             "gender": "female",
-            "name": "Draginja",
+            "name": "Драгиња",
             "born": "1945",
             "died": ""
         },
@@ -696,7 +738,7 @@
             "id": 82,
             "fid": 67,
             "gender": "male",
-            "name": "Drago",
+            "name": "Драго",
             "born": "1945",
             "died": ""
         },
@@ -704,7 +746,7 @@
             "id": 83,
             "fid": 67,
             "gender": "male",
-            "name": "Joco",
+            "name": "Јоцо",
             "born": "1948",
             "died": ""
         },
@@ -712,7 +754,7 @@
             "id": 84,
             "fid": 67,
             "gender": "male",
-            "name": "Ratko",
+            "name": "Ратко",
             "born": "1942",
             "died": "1995"
         },
@@ -720,7 +762,7 @@
             "id": 85,
             "fid": 71,
             "gender": "male",
-            "name": "Bozo",
+            "name": "Бозо",
             "born": "1930",
             "died": "19.."
         },
@@ -728,7 +770,7 @@
             "id": 86,
             "fid": 71,
             "gender": "male",
-            "name": "Lazar",
+            "name": "Лазар",
             "born": "1937",
             "died": ""
         },
@@ -736,7 +778,7 @@
             "id": 87,
             "fid": 71,
             "gender": "female",
-            "name": "Joka",
+            "name": "Јока",
             "born": "1941",
             "died": ""
         },
@@ -744,7 +786,7 @@
             "id": 88,
             "fid": 71,
             "gender": "male",
-            "name": "Ratko",
+            "name": "Ратко",
             "born": "1943",
             "died": ""
         },
@@ -752,7 +794,7 @@
             "id": 89,
             "fid": 71,
             "gender": "male",
-            "name": "Marko",
+            "name": "Марко",
             "born": "1943",
             "died": ""
         },
@@ -760,7 +802,7 @@
             "id": 90,
             "fid": 71,
             "gender": "female",
-            "name": "Ljepa",
+            "name": "Љепа",
             "born": "1948",
             "died": ""
         },
@@ -768,7 +810,7 @@
             "id": 91,
             "fid": 71,
             "gender": "female",
-            "name": "Jela",
+            "name": "Јела",
             "born": "1950",
             "died": ""
         },
@@ -776,7 +818,7 @@
             "id": 92,
             "fid": 73,
             "gender": "male",
-            "name": "Jovo",
+            "name": "Јово",
             "born": "1938",
             "died": ""
         },
@@ -784,7 +826,7 @@
             "id": 93,
             "fid": 73,
             "gender": "male",
-            "name": "Milan",
+            "name": "Милан",
             "born": "1941",
             "died": ""
         },
@@ -792,7 +834,7 @@
             "id": 94,
             "fid": 73,
             "gender": "male",
-            "name": "Marko",
+            "name": "Марко",
             "born": "1949",
             "died": ""
         },
@@ -800,7 +842,7 @@
             "id": 95,
             "fid": 76,
             "gender": "female",
-            "name": "Mara",
+            "name": "Мара",
             "born": "",
             "died": ""
         },
@@ -808,7 +850,7 @@
             "id": 96,
             "fid": 76,
             "gender": "female",
-            "name": "Bosa",
+            "name": "Боса",
             "born": "",
             "died": ""
         },
@@ -816,7 +858,7 @@
             "id": 97,
             "fid": 76,
             "gender": "male",
-            "name": "Boro",
+            "name": "Боро",
             "born": "1952",
             "died": "1977"
         },
@@ -824,7 +866,7 @@
             "id": 98,
             "fid": 77,
             "gender": "female",
-            "name": "Mira",
+            "name": "Мира",
             "born": "",
             "died": ""
         },
@@ -832,7 +874,7 @@
             "id": 99,
             "fid": 77,
             "gender": "female",
-            "name": "Vesna",
+            "name": "Весна",
             "born": "",
             "died": ""
         },
@@ -840,7 +882,7 @@
             "id": 100,
             "fid": 80,
             "gender": "male",
-            "name": "Miso",
+            "name": "Мишо",
             "born": "1959",
             "died": ""
         },
@@ -848,7 +890,7 @@
             "id": 101,
             "fid": 80,
             "gender": "male",
-            "name": "Miodrag",
+            "name": "Миодраг",
             "born": "1967",
             "died": "1992"
         },
@@ -856,7 +898,7 @@
             "id": 102,
             "fid": 80,
             "gender": "male",
-            "name": "Mladen",
+            "name": "Младен",
             "born": "1983",
             "died": ""
         },
@@ -864,7 +906,7 @@
             "id": 103,
             "fid": 82,
             "gender": "male",
-            "name": "Goran",
+            "name": "Горан",
             "born": "",
             "died": ""
         },
@@ -872,7 +914,7 @@
             "id": 104,
             "fid": 82,
             "gender": "male",
-            "name": "Predrag",
+            "name": "Предраг",
             "born": "1958",
             "died": ""
         },
@@ -880,7 +922,7 @@
             "id": 105,
             "fid": 83,
             "gender": "male",
-            "name": "Sladjan",
+            "name": "Слађан",
             "born": "1971",
             "died": ""
         },
@@ -888,7 +930,7 @@
             "id": 106,
             "fid": 83,
             "gender": "male",
-            "name": "Igor",
+            "name": "Игор",
             "born": "1980",
             "died": ""
         },
@@ -896,7 +938,7 @@
             "id": 107,
             "fid": 83,
             "gender": "female",
-            "name": "Mirela",
+            "name": "Мирела",
             "born": "1985",
             "died": ""
         },
@@ -904,7 +946,7 @@
             "id": 108,
             "fid": 85,
             "gender": "female",
-            "name": "Mara",
+            "name": "Мара",
             "born": "1951",
             "died": ""
         },
@@ -912,7 +954,7 @@
             "id": 109,
             "fid": 85,
             "gender": "male",
-            "name": "Mira",
+            "name": "Мира",
             "born": "1956",
             "died": ""
         },
@@ -920,7 +962,7 @@
             "id": 110,
             "fid": 86,
             "gender": "male",
-            "name": "Dejan",
+            "name": "Дејан",
             "born": "1965",
             "died": ""
         },
@@ -928,7 +970,7 @@
             "id": 111,
             "fid": 88,
             "gender": "male",
-            "name": "Ljubisa",
+            "name": "Љубиша",
             "born": "1968",
             "died": ""
         },
@@ -936,7 +978,7 @@
             "id": 112,
             "fid": 88,
             "gender": "female",
-            "name": "Ljubinka",
+            "name": "Љубинка",
             "born": "1968",
             "died": ""
         },
@@ -944,7 +986,7 @@
             "id": 113,
             "fid": 89,
             "gender": "male",
-            "name": "Dragan",
+            "name": "Драган",
             "born": "",
             "died": ""
         },
@@ -952,7 +994,7 @@
             "id": 114,
             "fid": 89,
             "gender": "female",
-            "name": "Milka",
+            "name": "Милка",
             "born": "",
             "died": ""
         },
@@ -960,7 +1002,7 @@
             "id": 115,
             "fid": 92,
             "gender": "male",
-            "name": "Mara",
+            "name": "Мара",
             "born": "1959",
             "died": ""
         },
@@ -968,7 +1010,7 @@
             "id": 116,
             "fid": 92,
             "gender": "male",
-            "name": "Niko",
+            "name": "Нико",
             "born": "1963",
             "died": ""
         },
@@ -976,7 +1018,7 @@
             "id": 117,
             "fid": 93,
             "gender": "male",
-            "name": "Igor",
+            "name": "Игор",
             "born": "1978",
             "died": ""
         },
@@ -984,7 +1026,7 @@
             "id": 118,
             "fid": 93,
             "gender": "male",
-            "name": "Sasa",
+            "name": "Саша",
             "born": "1969",
             "died": ""
         },
@@ -992,7 +1034,7 @@
             "id": 119,
             "fid": 94,
             "gender": "female",
-            "name": "Ruza",
+            "name": "Ружа",
             "born": "1972",
             "died": ""
         },
@@ -1000,7 +1042,7 @@
             "id": 120,
             "fid": 94,
             "gender": "female",
-            "name": "Dragana",
+            "name": "Драгана",
             "born": "1973",
             "died": ""
         },
@@ -1008,15 +1050,17 @@
             "id": 121,
             "fid": 94,
             "gender": "male",
-            "name": "Dragan",
+            "name": "Драган",
             "born": "1984",
             "died": ""
         },
         {
             "id": 122,
-            "pids": [74],
+            "pids": [
+                74
+            ],
             "gender": "female",
-            "name": "Jela",
+            "name": "Јела",
             "born": "1845",
             "died": "1911"
         },
@@ -1024,17 +1068,21 @@
             "id": 123,
             "fid": 74,
             "mid": 122,
-            "pids": [124],
+            "pids": [
+                124
+            ],
             "gender": "male",
-            "name": "Obren",
+            "name": "Обрен",
             "born": "1873",
             "died": "1922"
         },
         {
             "id": 124,
-            "pids": [123],
+            "pids": [
+                123
+            ],
             "gender": "female",
-            "name": "Cvijeta",
+            "name": "Цвијета",
             "born": "1876",
             "died": ""
         },
@@ -1043,7 +1091,7 @@
             "fid": 123,
             "mid": 124,
             "gender": "male",
-            "name": "Lazar",
+            "name": "Лазар",
             "born": "1908",
             "died": "1984"
         },
@@ -1052,7 +1100,7 @@
             "fid": 74,
             "mid": 122,
             "gender": "male",
-            "name": "Simo",
+            "name": "Симо",
             "born": "1877",
             "died": "1945"
         },
@@ -1061,7 +1109,7 @@
             "fid": 74,
             "mid": 122,
             "gender": "female",
-            "name": "Jelka",
+            "name": "Јелка",
             "born": "1882",
             "died": ""
         },
@@ -1070,7 +1118,7 @@
             "fid": 74,
             "mid": 122,
             "gender": "female",
-            "name": "Goja",
+            "name": "Гоја",
             "born": "",
             "died": ""
         },
@@ -1079,7 +1127,7 @@
             "fid": 74,
             "mid": 122,
             "gender": "female",
-            "name": "Persa",
+            "name": "Перса",
             "born": "",
             "died": ""
         },
@@ -1087,27 +1135,33 @@
             "id": 130,
             "fid": 74,
             "mid": 122,
-            "pids": [143],
+            "pids": [
+                143
+            ],
             "gender": "male",
-            "name": "Cvjetko",
+            "name": "Цвјетко",
             "born": "1878",
             "died": "1884"
         },
         {
             "id": 131,
-            "pids": [132],
+            "pids": [
+                132
+            ],
             "fid": 74,
             "mid": 122,
             "gender": "male",
-            "name": "Jovo",
+            "name": "Јово",
             "born": "1884",
             "died": "1930"
         },
         {
             "id": 132,
-            "pids": [131],
+            "pids": [
+                131
+            ],
             "gender": "female",
-            "name": "Ljubica",
+            "name": "Љубица",
             "born": "1877",
             "died": "1945"
         },
@@ -1116,7 +1170,7 @@
             "fid": 74,
             "mid": 122,
             "gender": "male",
-            "name": "Petko",
+            "name": "Петко",
             "born": "1885",
             "died": "1960"
         },
@@ -1125,7 +1179,7 @@
             "fid": 74,
             "mid": 122,
             "gender": "male",
-            "name": "Stevo",
+            "name": "Стево",
             "born": "1886",
             "died": "1954"
         },
@@ -1134,7 +1188,7 @@
             "fid": 131,
             "mid": 132,
             "gender": "male",
-            "name": "Simeun",
+            "name": "Симеун",
             "born": "1906",
             "died": "1907"
         },
@@ -1143,7 +1197,7 @@
             "fid": 131,
             "mid": 132,
             "gender": "female",
-            "name": "Jovanka",
+            "name": "Јованка",
             "born": "1908",
             "died": "1908"
         },
@@ -1152,7 +1206,7 @@
             "fid": 131,
             "mid": 132,
             "gender": "male",
-            "name": "Milorad",
+            "name": "Милорад",
             "born": "1910",
             "died": ""
         },
@@ -1161,7 +1215,7 @@
             "fid": 131,
             "mid": 132,
             "gender": "male",
-            "name": "Pantelija",
+            "name": "Пантелија",
             "born": "1912",
             "died": "1915"
         },
@@ -1170,7 +1224,7 @@
             "fid": 131,
             "mid": 132,
             "gender": "male",
-            "name": "Bozo",
+            "name": "Бозо",
             "born": "1914",
             "died": "1917"
         },
@@ -1179,7 +1233,7 @@
             "fid": 131,
             "mid": 132,
             "gender": "male",
-            "name": "Ilija",
+            "name": "Илија",
             "born": "1919",
             "died": "1923"
         },
@@ -1188,7 +1242,7 @@
             "fid": 131,
             "mid": 132,
             "gender": "male",
-            "name": "Aleksandar",
+            "name": "Александар",
             "born": "1921",
             "died": "1984"
         },
@@ -1197,15 +1251,17 @@
             "fid": 131,
             "mid": 132,
             "gender": "female",
-            "name": "Janja",
+            "name": "Јања",
             "born": "1923",
             "died": ""
         },
         {
             "id": 143,
-            "pids": [130],
+            "pids": [
+                130
+            ],
             "gender": "female",
-            "name": "Joka",
+            "name": "Јока",
             "born": "1884",
             "died": ""
         },
@@ -1214,7 +1270,7 @@
             "fid": 130,
             "mid": 143,
             "gender": "male",
-            "name": "Pero",
+            "name": "Перо",
             "born": "1923",
             "died": "1982"
         },
@@ -1223,7 +1279,7 @@
             "fid": 130,
             "mid": 143,
             "gender": "female",
-            "name": "Persa",
+            "name": "Перса",
             "born": "1906",
             "died": "1906"
         },
@@ -1231,7 +1287,7 @@
             "id": 146,
             "fid": 134,
             "gender": "male",
-            "name": "Vaso",
+            "name": "Васо",
             "born": "1910",
             "died": ""
         },
@@ -1239,7 +1295,7 @@
             "id": 147,
             "fid": 134,
             "gender": "female",
-            "name": "Joka",
+            "name": "Јока",
             "born": "",
             "died": ""
         },
@@ -1247,7 +1303,7 @@
             "id": 148,
             "fid": 134,
             "gender": "male",
-            "name": "Milka",
+            "name": "Милка",
             "born": "",
             "died": ""
         },
@@ -1255,7 +1311,7 @@
             "id": 149,
             "fid": 134,
             "gender": "male",
-            "name": "Simo",
+            "name": "Симо",
             "born": "1914",
             "died": "1944"
         },
@@ -1263,7 +1319,7 @@
             "id": 150,
             "fid": 134,
             "gender": "male",
-            "name": "Djordja",
+            "name": "Дјордја",
             "born": "1919",
             "died": "1980"
         },
@@ -1271,7 +1327,7 @@
             "id": 151,
             "fid": 27,
             "gender": "female",
-            "name": "Klaudija",
+            "name": "Клаудија",
             "born": "",
             "died": ""
         },
@@ -1279,7 +1335,7 @@
             "id": 152,
             "fid": 100,
             "gender": "female",
-            "name": "Mirela",
+            "name": "Мирела",
             "born": "",
             "died": ""
         },
@@ -1287,7 +1343,7 @@
             "id": 153,
             "fid": 100,
             "gender": "female",
-            "name": "Jovana",
+            "name": "Јована",
             "born": "1992",
             "died": ""
         },
@@ -1295,7 +1351,7 @@
             "id": 154,
             "fid": 101,
             "gender": "male",
-            "name": "Irena",
+            "name": "Ирена",
             "born": "1991",
             "died": ""
         },
@@ -1303,7 +1359,7 @@
             "id": 155,
             "fid": 104,
             "gender": "male",
-            "name": "Aleksandar",
+            "name": "Александар",
             "born": "1988",
             "died": ""
         },
@@ -1311,7 +1367,7 @@
             "id": 156,
             "fid": 104,
             "gender": "male",
-            "name": "Miodrag",
+            "name": "Миодраг",
             "born": "1992",
             "died": ""
         },
@@ -1319,7 +1375,7 @@
             "id": 158,
             "fid": 111,
             "gender": "male",
-            "name": "Rastko",
+            "name": "Растко",
             "born": "1998",
             "died": ""
         },
@@ -1327,7 +1383,7 @@
             "id": 159,
             "fid": 111,
             "gender": "male",
-            "name": "Nemanja",
+            "name": "Немања",
             "born": "",
             "died": ""
         },
@@ -1335,7 +1391,7 @@
             "id": 159,
             "fid": 89,
             "gender": "female",
-            "name": "Maja",
+            "name": "Маја",
             "born": "",
             "died": ""
         },
@@ -1343,7 +1399,7 @@
             "id": 160,
             "fid": 89,
             "gender": "male",
-            "name": "Marko",
+            "name": "Марко",
             "born": "",
             "died": ""
         },
@@ -1351,7 +1407,7 @@
             "id": 161,
             "fid": 116,
             "gender": "male",
-            "name": "Jovica",
+            "name": "Јовица",
             "born": "1989",
             "died": ""
         },
@@ -1359,7 +1415,7 @@
             "id": 162,
             "fid": 116,
             "gender": "male",
-            "name": "Andrea",
+            "name": "Андреа",
             "born": "1996",
             "died": ""
         },
@@ -1367,7 +1423,7 @@
             "id": 163,
             "fid": 117,
             "gender": "male",
-            "name": "Mihailo",
+            "name": "Михаило",
             "born": "",
             "died": ""
         },
@@ -1375,7 +1431,7 @@
             "id": 164,
             "fid": 117,
             "gender": "male",
-            "name": "Nemanja",
+            "name": "Немања",
             "born": "",
             "died": ""
         },
@@ -1383,7 +1439,7 @@
             "id": 165,
             "fid": 118,
             "gender": "male",
-            "name": "Jelena",
+            "name": "Јелена",
             "born": "",
             "died": ""
         },
@@ -1391,7 +1447,7 @@
             "id": 166,
             "fid": 135,
             "gender": "male",
-            "name": "Goja",
+            "name": "Гоја",
             "born": "1910",
             "died": ""
         },
@@ -1399,7 +1455,7 @@
             "id": 167,
             "fid": 135,
             "gender": "male",
-            "name": "Spasoje",
+            "name": "Спасоје",
             "born": "1914",
             "died": "1984"
         },
@@ -1407,7 +1463,7 @@
             "id": 168,
             "fid": 135,
             "gender": "male",
-            "name": "Spasa",
+            "name": "Спаса",
             "born": "1930",
             "died": ""
         },
@@ -1415,7 +1471,7 @@
             "id": 169,
             "fid": 134,
             "gender": "male",
-            "name": "Vaso",
+            "name": "Васо",
             "born": "1910",
             "died": ""
         },
@@ -1423,7 +1479,7 @@
             "id": 170,
             "fid": 134,
             "gender": "female",
-            "name": "Joka",
+            "name": "Јока",
             "born": "",
             "died": ""
         },
@@ -1431,7 +1487,7 @@
             "id": 171,
             "fid": 134,
             "gender": "female",
-            "name": "Milka",
+            "name": "Милка",
             "born": "",
             "died": ""
         },
@@ -1439,7 +1495,7 @@
             "id": 172,
             "fid": 134,
             "gender": "male",
-            "name": "Simo",
+            "name": "Симо",
             "born": "1914",
             "died": "1944"
         },
@@ -1447,7 +1503,7 @@
             "id": 173,
             "fid": 134,
             "gender": "male",
-            "name": "Djordja",
+            "name": "Дјордја",
             "born": "1919",
             "died": "1980"
         },
@@ -1455,7 +1511,7 @@
             "id": 174,
             "fid": 126,
             "gender": "male",
-            "name": "Djoko",
+            "name": "Ђоко",
             "born": "1901",
             "died": "1990"
         },
@@ -1463,7 +1519,7 @@
             "id": 175,
             "fid": 126,
             "gender": "female",
-            "name": "Jela",
+            "name": "Јела",
             "born": "1910",
             "died": "1986"
         },
@@ -1471,7 +1527,7 @@
             "id": 176,
             "fid": 126,
             "gender": "female",
-            "name": "Savka",
+            "name": "Савка",
             "born": "1919",
             "died": ""
         },
@@ -1479,7 +1535,7 @@
             "id": 177,
             "fid": 126,
             "gender": "male",
-            "name": "Desa",
+            "name": "Деса",
             "born": "1923",
             "died": ""
         },
@@ -1487,7 +1543,7 @@
             "id": 178,
             "fid": 126,
             "gender": "female",
-            "name": "Cvijeta",
+            "name": "Цвијета",
             "born": "",
             "died": ""
         },
@@ -1495,7 +1551,7 @@
             "id": 179,
             "fid": 126,
             "gender": "male",
-            "name": "Cvjetko",
+            "name": "Цвјетко",
             "born": "1923",
             "died": ""
         },
@@ -1503,7 +1559,7 @@
             "id": 180,
             "fid": 126,
             "gender": "female",
-            "name": "Despa",
+            "name": "Деспа",
             "born": "1909",
             "died": ""
         },
@@ -1511,7 +1567,7 @@
             "id": 181,
             "fid": 126,
             "gender": "male",
-            "name": "Branko",
+            "name": "Бранко",
             "born": "1921",
             "died": ""
         },
@@ -1519,7 +1575,7 @@
             "id": 182,
             "fid": 126,
             "gender": "male",
-            "name": "Dusan",
+            "name": "Дусан",
             "born": "1906",
             "died": "1968"
         },
@@ -1527,7 +1583,7 @@
             "id": 183,
             "fid": 125,
             "gender": "male",
-            "name": "Andrija",
+            "name": "Андрија",
             "born": "1935",
             "died": "1935"
         },
@@ -1535,7 +1591,7 @@
             "id": 184,
             "fid": 174,
             "gender": "male",
-            "name": "Simo",
+            "name": "Симо",
             "born": "",
             "died": ""
         },
@@ -1543,7 +1599,7 @@
             "id": 185,
             "fid": 174,
             "gender": "female",
-            "name": "Vojka",
+            "name": "Војка",
             "born": "",
             "died": ""
         },
@@ -1551,7 +1607,7 @@
             "id": 186,
             "fid": 174,
             "gender": "female",
-            "name": "Mico",
+            "name": "Мицо",
             "born": "",
             "died": ""
         },
@@ -1559,7 +1615,7 @@
             "id": 187,
             "fid": 174,
             "gender": "female",
-            "name": "Ruza",
+            "name": "Ружа",
             "born": "",
             "died": ""
         },
@@ -1567,7 +1623,7 @@
             "id": 188,
             "fid": 174,
             "gender": "female",
-            "name": "Milka",
+            "name": "Милка",
             "born": "",
             "died": ""
         },
@@ -1575,7 +1631,7 @@
             "id": 189,
             "fid": 174,
             "gender": "female",
-            "name": "Stojan",
+            "name": "Стојан",
             "born": "",
             "died": ""
         },
@@ -1583,7 +1639,7 @@
             "id": 190,
             "fid": 179,
             "gender": "male",
-            "name": "Slobodan",
+            "name": "Слободан",
             "born": "1952",
             "died": ""
         },
@@ -1591,7 +1647,7 @@
             "id": 191,
             "fid": 179,
             "gender": "male",
-            "name": "Brano",
+            "name": "Брано",
             "born": "1951",
             "died": ""
         },
@@ -1599,7 +1655,7 @@
             "id": 192,
             "fid": 181,
             "gender": "male",
-            "name": "Simo",
+            "name": "Симо",
             "born": "1944",
             "died": ""
         },
@@ -1607,7 +1663,7 @@
             "id": 193,
             "fid": 181,
             "gender": "male",
-            "name": "Petra",
+            "name": "Петра",
             "born": "",
             "died": ""
         },
@@ -1615,7 +1671,7 @@
             "id": 194,
             "fid": 182,
             "gender": "male",
-            "name": "Mitar",
+            "name": "Митар",
             "born": "1929",
             "died": ""
         },
@@ -1623,7 +1679,7 @@
             "id": 195,
             "fid": 182,
             "gender": "male",
-            "name": "Lazar",
+            "name": "Лазар",
             "born": "1942",
             "died": ""
         },
@@ -1631,7 +1687,7 @@
             "id": 196,
             "fid": 182,
             "gender": "male",
-            "name": "Aleksandar",
+            "name": "Александар",
             "born": "1935",
             "died": ""
         }
