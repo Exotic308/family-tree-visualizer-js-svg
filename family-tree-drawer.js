@@ -365,12 +365,12 @@ class FamilyTreeDrawer {
 
     //#region Family Tree Utility
     findPartner(person) {
-        if (!person.pids || person.pids.length === 0) {
+        if (!person.pid) {
             return null;
         }
         
-        // Get the first partner (assuming monogamous relationships for now)
-        const partnerId = person.pids[0];
+        // Get the partner (assuming monogamous relationships for now)
+        const partnerId = person.pid;
         return this.data.nodes.find(node => node.id === partnerId);
     }
 

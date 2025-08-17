@@ -14,7 +14,7 @@ var data = {
             id: 1,           // Unique identifier for this person
             mid: 8,          // Mother's ID
             fid: 9,          // Father's ID
-            pids: [2],       // Partner IDs (array of spouse/partner IDs)
+            pid: 2,          // Partner ID (spouse/partner ID)
             gender: 'male',  // Gender
             name: 'Pero',    // Person's name
             born: '1968',    // Birth year
