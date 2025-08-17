@@ -12,13 +12,13 @@ var data = {
     nodes: [   // Array of all persons in the family tree
         {
             id: 1,           // Unique identifier for this person
-            mid: 8,          // Mother ID (mother's person ID)
-            fid: 9,          // Father ID (father's person ID)
+            mid: 8,          // Mother's ID
+            fid: 9,          // Father's ID
             pids: [2],       // Partner IDs (array of spouse/partner IDs)
-            gender: 'male',   // Gender: 'male' or 'female'
+            gender: 'male',  // Gender
             name: 'Pero',    // Person's name
             born: '1968',    // Birth year
-            died: ''     // Death year (optional, empty string if alive)
+            died: ''         // Death year (optional, empty string if alive)
         }
         // ... more persons
     ]
