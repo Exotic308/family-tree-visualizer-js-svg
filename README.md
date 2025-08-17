@@ -62,3 +62,8 @@ Then open `http://localhost:8000` in your browser.
 - No external libraries required
 - Pure JavaScript and SVG
 - CSS for styling (optional)
+
+### Demo
+<img width="1197" height="1016" alt="image" src="https://github.com/user-attachments/assets/1bbdda36-0e5c-4318-a97e-17d9198afeb0" />
+
+
