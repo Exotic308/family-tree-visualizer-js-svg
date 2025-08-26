@@ -79,4 +79,9 @@ Then open `http://localhost:8000` in your browser.
 
 You can also view the family tree live at: **https://ignjic.org**
 
-<img width="1197" height="1016" alt="image" src="https://github.com/user-attachments/assets/1bbdda36-0e5c-4318-a97e-17d9198afeb0" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/3a2b0c73-995a-43d8-857f-9fd0564ec88a" />
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/9e6f6b22-6dc9-489c-a261-4edd3c69ea0f" />
+  <img alt="image" src="https://github.com/user-attachments/assets/9e6f6b22-6dc9-489c-a261-4edd3c69ea0f" />
+</picture>
+
