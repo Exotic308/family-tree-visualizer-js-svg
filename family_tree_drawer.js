@@ -3,10 +3,6 @@ class FamilyTreeDrawer {
         this.container = document.querySelector(selector);
         this.data = data;
 
-        this.header = 78;
-        this.verticalSpacing = 16;
-        this.horizontalSpacing = 16;
-
         this.lineThickness = 0.8;
         this.spouseDistance = 16;
         this.nameWidth = 100;
@@ -73,12 +69,14 @@ class FamilyTreeDrawer {
     }
 
     updateSVGSize() {
+        return;
+        // Let CSS handle the layout - just work with whatever space we're given
         const container = this.container.parentElement;
         const containerRect = container.getBoundingClientRect();
         
-        // Set SVG dimensions to fill available space
+        // Set SVG dimensions to fill the space we're given
         this.container.setAttribute('width', containerRect.width);
-        this.container.setAttribute('height', containerRect.height); // Ensure minimum height for all content
+        this.container.setAttribute('height', containerRect.height);
         
         // Set viewBox to match dimensions
         this.container.setAttribute('viewBox', `0 0 ${containerRect.width} ${containerRect.height}`);
@@ -302,8 +300,8 @@ class FamilyTreeDrawer {
             return;
         }
         
-        // 78 is header
-        this.renderPerson(rootPerson, this.horizontalSpacing, this.header + this.verticalSpacing);
+        // Start rendering from the top with just a small margin
+        this.renderPerson(rootPerson, 0, 0);
     }
 
     renderPerson(person, startX, startY, totalHeight) {
@@ -374,29 +372,19 @@ class FamilyTreeDrawer {
         return this.data.nodes.find(node => node.id === partnerId);
     }
 
-    findChildren(person1, person2) {
+    findChildren(person) {
         const children = [];
         
-        // Find all nodes that have person1 or person2 as parents
+        // Find all nodes that have person1 as a parent
         this.data.nodes.forEach(node => {
-            if (person2) {
-                // Both parents exist
-                if ((node.fid === person1.id && node.mid === person2.id) || 
-                    (node.fid === person2.id && node.mid === person1.id)) {
-                    children.push(node);
-                }
-            } else {
-                // Only one parent exists (single parent)
-                if (node.fid === person1.id || node.mid === person1.id) {
-                    children.push(node);
-                }
+            if (node.fid === person.id || node.mid === person.id) {
+                children.push(node);
             }
         });
-        
+        console.log("sort");
         // Sort children by ID for consistent ordering
-        children.sort((a, b) => a.id - b.id);
+        //children.sort((a, b) => a.born - b.born);
         
-        console.log('Found children:', children);
         return children;
     }
 
@@ -404,19 +392,18 @@ class FamilyTreeDrawer {
 
     //#region Draw Functions
     drawPerson(person, x, y) {
-        console.log('Drawing person:', person.name, 'at', x, y);
-    
         // Single text element with CSS classes
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         text.setAttribute('x', x);
         text.setAttribute('y', y);
         text.classList.add('person-text');
+        // Add person ID as data attribute for unique identification
+        text.setAttribute('data-person-id', person.id);
 
         // Bold name with CSS class
         const nameSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
         nameSpan.classList.add('person-name');
         nameSpan.textContent = person.name;
-        
         text.appendChild(nameSpan);
     
         // Years (non-bold) if available
@@ -424,12 +411,12 @@ class FamilyTreeDrawer {
             const yearsSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
             yearsSpan.classList.add('person-years');
             let years = ' ';
-            if (person.born) years += person.born;
-            if (person.died) years += ' ' + person.died;
+            if (person.born != null && person.born != "") years += person.born;
+            if (person.died != null && person.died != "") years += ' - ' + person.died;
             yearsSpan.textContent = years;
             text.appendChild(yearsSpan);
         }
-    
+
         this.container.appendChild(text);
     
         return text;
