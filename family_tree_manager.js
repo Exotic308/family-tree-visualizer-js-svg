@@ -1,5 +1,18 @@
 // Family Tree Application Script
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // 🌟 STUNNING LOADING SCREEN LOGIC 🌟
+    const loadingScreen = document.getElementById('loading-screen');
+    
+    // Simulate minimum loading time for better UX (especially on mobile)
+    const minLoadingTime = 2500; // 2.5 seconds minimum
+    const startTime = Date.now();
+
+    // 🧪 TESTING MODE - Set to true to disable loading screen
+    const TESTING_MODE = true;
+    if (TESTING_MODE) {
+        loadingScreen.style.display = 'none';
+    }
   
     // Load the family tree data from JSON file
     fetch('family_tree_ignjic.json?v=1')
@@ -10,18 +23,55 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
+            // 🌟 HIDE LOADING SCREEN WITH STUNNING ANIMATION 🌟
+            if (TESTING_MODE) {
+                const hideLoadingScreen = () => {
+                    loadingScreen.classList.add('hidden');
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                        // No content loading animation - just clean fade in
+                    }, 500);
+                };
+                
+                // Ensure minimum loading time for better UX
+                const elapsedTime = Date.now() - startTime;
+                if (elapsedTime < minLoadingTime) {
+                    setTimeout(hideLoadingScreen, minLoadingTime - elapsedTime);
+                } else {
+                    hideLoadingScreen();
+                }
+            }
+            
             // Initialize the family tree drawer
             const drawer = new FamilyTreeDrawer('#family-tree-svg', data);
             drawer.render();
             
+            // 🌟 CONNECT BUTTONS WITH STUNNING LOADING STATES 🌟
+            
             // Connect reset button
             document.getElementById('reset-view-btn').addEventListener('click', () => {
-                drawer.resetView();
+                const btn = document.getElementById('reset-view-btn');
+                btn.classList.add('button-loading');
+                btn.textContent = 'Ресетујем...';
+                
+                setTimeout(() => {
+                    drawer.resetView();
+                    btn.classList.remove('button-loading');
+                    btn.textContent = data.resetView;
+                }, 800);
             });
             
             // Connect download button
             document.getElementById('download-svg-btn').addEventListener('click', () => {
-                drawer.downloadSVG();
+                const btn = document.getElementById('download-svg-btn');
+                btn.classList.add('button-loading');
+                btn.textContent = 'Преузимам...';
+                
+                setTimeout(() => {
+                    drawer.downloadSVG();
+                    btn.classList.remove('button-loading');
+                    btn.textContent = data.downloadSvg;
+                }, 600);
             });
             
             // Connect full text button
@@ -85,6 +135,18 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileHamburgerIcon.addEventListener('click', () => {
                 //menuContent.classList.toggle('active');
                 hamburgerMenu.classList.toggle('active');
+                
+                // Hide/show SVG based on menu state
+                const svg = document.getElementById('family-tree-svg');
+                if (hamburgerMenu.classList.contains('active')) {
+                    svg.style.display = 'none';
+                    // Prevent body scrolling when menu is open
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    svg.style.display = 'block';
+                    // Restore body scrolling when menu is closed
+                    document.body.style.overflow = 'hidden';
+                }
             });
             
             // Also add touch events for mobile
@@ -92,6 +154,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 //menuContent.classList.toggle('active');
                 hamburgerMenu.classList.toggle('active');
+                
+                // Hide/show SVG based on menu state
+                const svg = document.getElementById('family-tree-svg');
+                if (hamburgerMenu.classList.contains('active')) {
+                    svg.style.display = 'none';
+                    // Prevent body scrolling when menu is open
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    svg.style.display = 'block';
+                    // Restore body scrolling when menu is closed
+                    document.body.style.overflow = 'hidden';
+                }
             });
             
             function inlinePersonDetails(person){

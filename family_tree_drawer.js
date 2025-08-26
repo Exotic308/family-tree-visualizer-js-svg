@@ -4,7 +4,7 @@ class FamilyTreeDrawer {
         this.data = data;
 
         this.lineThickness = 0.8;
-        this.spouseDistance = 16;
+        this.spouseDistance = 0;
         this.nameWidth = 100;
         this.afterAscendantSpacing = 20;
         this.beforeDescendantSpacing = 20;
@@ -38,13 +38,55 @@ class FamilyTreeDrawer {
 
     getSVGStyles() {
         return `
-            .person-text { font-size: 16px; font-family: Arial, sans-serif; text-anchor: start; fill: black; }
-            .person-name { font-weight: bold; dominant-baseline: hanging; }
-            .person-years { font-weight: normal; dominant-baseline: hanging; }
-            .connection-line { stroke: black; stroke-width: 0.8; fill: none; }
-            .shape-outline { fill: none; stroke: black; stroke-width: 1; }
-            .person-text:hover { fill: #007bff; cursor: pointer; }
-            .connection-line:hover { stroke: #007bff; stroke-width: 1.2; }
+            .person-text { 
+                font-size: 16px; 
+                font-family: 'Georgia', serif; 
+                text-anchor: start; 
+                fill: black; 
+                filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+            }
+            .person-name { 
+                font-weight: bold; 
+                dominant-baseline: hanging; 
+                font-size: 20px;
+                fill: black;
+            }
+            .person-years { 
+                font-weight: normal; 
+                dominant-baseline: hanging; 
+                font-size: 11px;
+                fill: #6b7280;
+            }
+            .connection-line { 
+                stroke: black; 
+                stroke-width: 1.2; 
+                fill: none; 
+                opacity: 0.8;
+                stroke-dasharray: 5, 5;
+            }
+            .shape-outline { 
+                fill: none; 
+                stroke: black; 
+                stroke-width: 1.5; 
+                opacity: 0.8;
+            }
+            .person-text:hover { 
+                fill: #8b2635; 
+                cursor: pointer; 
+                filter: drop-shadow(0 2px 4px rgba(139, 38, 53, 0.3));
+                transition: all 0.2s ease;
+            }
+            .connection-line:hover { 
+                stroke: #6d1e2a; 
+                stroke-width: 1.8; 
+                opacity: 1;
+                filter: drop-shadow(0 2px 4px rgba(139, 38, 53, 0.4));
+            }
+            .shape-outline:hover {
+                stroke: #6d1e2a;
+                stroke-width: 2;
+                opacity: 0.8;
+            }
         `;
     }
 
@@ -208,7 +250,7 @@ class FamilyTreeDrawer {
 
     zoomAtPoint(scaleFactor, x, y) {
         const oldScale = this.panZoom.scale;
-        const newScale = Math.max(0.1, Math.min(5, this.panZoom.scale * scaleFactor));
+        const newScale = Math.max(0.5, Math.min(3, this.panZoom.scale * scaleFactor));
         
         // Calculate zoom center point
         const zoomCenterX = (x - this.panZoom.translateX) / oldScale;
@@ -261,16 +303,52 @@ class FamilyTreeDrawer {
             svgClone.insertBefore(newDefs, svgClone.firstChild);
         }
         
-        // Set the SVG dimensions to the current viewport size
-        const containerRect = this.container.parentElement.getBoundingClientRect();
+        // Calculate the actual bounds of SVG content (recursively find all graphical elements from original container)
+        function getAllGraphicalElements(element, result = []) {
+            // Check if current element is graphical
+            if (['text', 'circle', 'line', 'rect', 'path'].includes(element.tagName)) {
+                result.push(element);
+            }
+            
+            // Recursively check all children
+            Array.from(element.children).forEach(child => {
+                getAllGraphicalElements(child, result);
+            });
+            
+            return result;
+        }
         
-        // Set SVG dimensions to fill available space
-        svgClone.setAttribute('width', containerRect.width);
-        svgClone.setAttribute('height', containerRect.height);
-
-        // Set viewBox to match dimensions
-        svgClone.setAttribute('viewBox', `0 0 ${containerRect.width} ${containerRect.height}`);
+        const graphicalElements = getAllGraphicalElements(this.container);
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
         
+        graphicalElements.forEach(element => {
+            console.log(element);
+            try {
+                const bbox = element.getBBox();
+                if (bbox.width > 0 && bbox.height > 0) {
+                    minX = Math.min(minX, bbox.x);
+                    minY = Math.min(minY, bbox.y);
+                    maxX = Math.max(maxX, bbox.x + bbox.width);
+                    maxY = Math.max(maxY, bbox.y + bbox.height);
+                }
+            } catch (e) {
+                // Skip elements that don't have getBBox
+                console.log('Skipping element:', element.tagName);
+            }
+        });
+        
+        // Add some padding around the content
+        const padding = 50;
+        const contentWidth = maxX - minX + (padding * 2);
+        const contentHeight = maxY - minY + (padding * 2);
+        
+        // Set SVG dimensions to the actual content size
+        svgClone.setAttribute('width', contentWidth);
+        svgClone.setAttribute('height', contentHeight);
+        
+        // Set viewBox to include all content with padding
+        svgClone.setAttribute('viewBox', `${minX - padding} ${minY - padding} ${contentWidth} ${contentHeight}`);
+        console.log(`${minX - padding} ${minY - padding} ${contentWidth} ${contentHeight}`);
         // Convert SVG to string
         const svgData = new XMLSerializer().serializeToString(svgClone);
         
@@ -309,14 +387,16 @@ class FamilyTreeDrawer {
         // Find the root person's partner and children
         const partner = this.findPartner(person);
         const children = this.findChildren(person, partner);
-
+        const siblings = this.findSiblings(person);
         // Draw person
         var personSvg = this.drawPerson(person, startX, startY);
         var personBox = personSvg.getBBox();
         
+
         var height = personBox.height;
         var width = personBox.width;
 
+        var boxMiddleY = 0;
         if (partner) {
             // Draw partner
             var partnerSvg = this.drawPerson(partner, startX, startY + personBox.height + this.spouseDistance);
@@ -325,17 +405,37 @@ class FamilyTreeDrawer {
             height += this.spouseDistance + partnerBox.height;
             width = width > partnerBox.width ? width : partnerBox.width;
 
-            this.drawLine(startX + width/2, startY + height/2 - 3, startX + width + this.afterAscendantSpacing, startY + height/2 - 3);
+            boxMiddleY = startY + height/2 - 3;
+
+            var mergedBox = this.mergeBBoxes(personBox, partnerBox);
+            //this.drawRectFromBox(mergedBox);
+            if(children.length > 0){
+                this.drawCircle(startX + width + 3, boxMiddleY + 3, 3);
+            }
         }else{
-            personSvg.setAttribute('y', startY + personBox.height);
-            personBox = personSvg.getBBox();
-            startY -= personBox.height - this.spouseDistance;
-            height += this.spouseDistance + personBox.height;
-            
+            if(children.length > 0 || siblings.length == 1){
+                var partnerSvg = this.drawPerson(person, startX, startY + personBox.height + this.spouseDistance);
+                var partnerBox = partnerSvg.getBBox();
+                this.container.removeChild(personSvg);
+                this.container.removeChild(partnerSvg);
+                
+                height += this.spouseDistance + partnerBox.height;
+                width = width > partnerBox.width ? width : partnerBox.width;
+                    
+                personSvg = this.drawPerson(person, startX, startY + personBox.height/2);
+                personBox = personSvg.getBBox();
+                boxMiddleY = startY + height/2;
+            }else{
+                //personSvg.setAttribute('y', startY + personBox.height/2);
+                //personBox = personSvg.getBBox();
+                boxMiddleY = startY + height/2;
+                //height += personBox.height/2;
+            }
         }
 
-        if(children.length > 0)
-            this.drawCircle(startX + width + this.afterAscendantSpacing, startY + height / 2, 3);
+        if(children.length > 0){
+            this.drawLine(startX + width, boxMiddleY, startX + width + this.afterAscendantSpacing, boxMiddleY);
+        }
 
         // Debugging
         //this.drawRect(personBox.x, personBox.y, personBox.width, personBox.height);
@@ -348,13 +448,15 @@ class FamilyTreeDrawer {
         var childrenHeight = 0;
         var isFirstChild = true;
         for(var child of children){
-            if(!isFirstChild){
-                childrenHeight += this.siblingDistance;
+            var childHasPartner = this.findPartner(child) === null && (this.findChildren(child).length > 0 || this.findSiblings(child).length == 1);
+            // Hack because childless 
+            if(!isFirstChild && !childHasPartner){
+                childrenHeight += personBox.height/2;
             }
             isFirstChild = false;
 
             var currentChildHeight = this.renderPerson(child, startX + width + this.beforeDescendantSpacing + this.afterAscendantSpacing, startY + childrenHeight, totalHeight);
-            this.drawCornerLine(startX + width + this.afterAscendantSpacing, startY + height / 2 - 3, startX + width + this.afterAscendantSpacing+ this.beforeDescendantSpacing, startY + height / 2 - 3 + childrenHeight);
+            this.drawCornerLine(startX + width + this.afterAscendantSpacing, boxMiddleY, startX + width + this.afterAscendantSpacing+ this.beforeDescendantSpacing, boxMiddleY + childrenHeight + (!childHasPartner ? -personBox.height/2 : 0));
             childrenHeight += currentChildHeight;
         }
 
@@ -362,6 +464,10 @@ class FamilyTreeDrawer {
     }
 
     //#region Family Tree Utility
+    findPerson(id){
+        return this.data.nodes.find(node => node.id === id);
+    }
+
     findPartner(person) {
         if (!person.pid) {
             return null;
@@ -370,6 +476,11 @@ class FamilyTreeDrawer {
         // Get the partner (assuming monogamous relationships for now)
         const partnerId = person.pid;
         return this.data.nodes.find(node => node.id === partnerId);
+    }
+
+    findSiblings(person) {
+        if(person.fid == null) return []; 
+        return this.findChildren(this.findPerson(person.fid));
     }
 
     findChildren(person) {
@@ -381,13 +492,30 @@ class FamilyTreeDrawer {
                 children.push(node);
             }
         });
-        console.log("sort");
         // Sort children by ID for consistent ordering
-        //children.sort((a, b) => a.born - b.born);
+        children.sort((a, b) => a.born - b.born);
         
         return children;
     }
 
+    //#endregion
+
+    //#region Math
+    mergeBBoxes(boxA, boxB) {
+        const x = Math.min(boxA.x, boxB.x);
+        const y = Math.min(boxA.y, boxB.y);
+      
+        const maxX = Math.max(boxA.x + boxA.width, boxB.x + boxB.width);
+        const maxY = Math.max(boxA.y + boxA.height, boxB.y + boxB.height);
+      
+        const rect = this.container.createSVGRect();
+        rect.x = x;
+        rect.y = y;
+        rect.width = maxX - x;
+        rect.height = maxY - y;
+      
+        return rect;
+    }
     //#endregion
 
     //#region Draw Functions
@@ -428,7 +556,8 @@ class FamilyTreeDrawer {
         // -3 because for some reason the circle is not centered on the y axis
         circle.setAttribute('cy', y - 3);
         circle.setAttribute('r', r);
-        circle.classList.add('shape-outline');
+        //circle.classList.add('shape-outline');
+        circle.setAttribute('fill', '#8b2635');
         this.container.appendChild(circle);
     }
 
@@ -438,6 +567,16 @@ class FamilyTreeDrawer {
         rect.setAttribute('y', y);
         rect.setAttribute('width', w);
         rect.setAttribute('height', h);
+        rect.classList.add('shape-outline');
+        this.container.appendChild(rect);
+    }
+
+    drawRectFromBox(box) {
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', box.x);
+        rect.setAttribute('y', box.y);
+        rect.setAttribute('width', box.width);
+        rect.setAttribute('height', box.height);
         rect.classList.add('shape-outline');
         this.container.appendChild(rect);
     }
